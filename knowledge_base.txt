@@ -1,0 +1,24 @@
+Product: Nike Air Max Sneakers
+Description: The Nike Air Max Sneakers offer superior comfort with responsive cushioning. Ideal for running and casual wear.
+Price: $120
+Category: Footwear
+
+Product: Apple MacBook Pro 14-inch
+Description: The Apple MacBook Pro features the M2 chip, 16GB RAM, and a stunning Retina display. Perfect for professionals.
+Price: $1,999
+Category: Electronics
+
+Product: Samsung 55-inch 4K Smart TV
+Description: Enjoy ultra-high-definition visuals and smart features with the Samsung 55-inch 4K TV. Supports all major streaming apps.
+Price: $750
+Category: Home Entertainment
+
+Product: Bose Noise-Canceling Headphones 700
+Description: Experience world-class noise cancellation and crystal-clear calls with Bose 700 headphones.
+Price: $379
+Category: Audio
+
+Product: Levi's Classic Denim Jacket
+Description: The Levi's Classic Denim Jacket is a timeless fashion staple, made with high-quality cotton for durability.
+Price: $89
+Category: Apparel
