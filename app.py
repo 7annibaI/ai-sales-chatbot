@@ -1,36 +1,22 @@
+# streamlit_app/app.py
 import streamlit as st
-from langchain.llms import Ollama
-from langchain.vectorstores import Chroma
-from langchain.embeddings import OllamaEmbeddings
-from langchain.chains import RetrievalQA
-from langchain.document_loaders import TextLoader
-from langchain.indexes import VectorstoreIndexCreator
+import requests
 
-# Initialize the LLM (Ollama)
-llm = Ollama(model="mistral")  # Change to your preferred model
+st.set_page_config(page_title="AI Sales Chatbot")
 
-# Load and create the vectorstore
-def load_vectorstore():
-    loader = TextLoader("knowledge_base.txt")  # Make sure this file is in your repo
-    index = VectorstoreIndexCreator(
-        embedding=OllamaEmbeddings()
-    ).from_loaders([loader])
-    return index.vectorstore.as_retriever()
+st.title("🛍️ AI Sales Assistant")
+user_question = st.text_input("Ask a product-related question:")
 
-retriever = load_vectorstore()
-
-# Create a RAG-powered chatbot
-qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever, chain_type="stuff")
-
-# Streamlit UI
-st.title("🛍️ AI Sales Assistant Chatbot")
-st.markdown("Ask me anything about our products!")
-
-user_query = st.text_input("Enter your query:", "")
-
-if st.button("Ask"):
-    if user_query:
-        response = qa_chain.run(user_query)
-        st.write("💬 Chatbot:", response)
+if st.button("Send"):
+    if user_question.strip() != "":
+        with st.spinner("Thinking..."):
+            try:
+                # Replace this URL with your ngrok URL from Google Colab
+                backend_url = "https://a86d-34-142-223-237.ngrok-free.app/ask"
+                res = requests.post(backend_url, json={"question": user_question})
+                data = res.json()
+                st.success(data.get("answer", "No answer received."))
+            except Exception as e:
+                st.error(f"Error: {e}")
     else:
-        st.warning("Please enter a query.")
+        st.warning("Please enter a question.")
